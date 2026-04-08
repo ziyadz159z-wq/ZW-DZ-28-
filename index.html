@@ -1,203 +1,216 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZIYAD 28 DZ</title>
-<style>
-  /* ==== Reset ==== */
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIYAD 28 DZ</title>
+    <style>
+        /* --- إعدادات عامة --- */
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
+        body, html { width:100%; height:100%; overflow-x:hidden; }
 
-  body, html {
-    height: 100%;
-    overflow-x: hidden;
-    background: #000;
-  }
+        /* --- الخلفية المتحركة للبحر --- */
+        .hero {
+            width:100%; height:100vh;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: wave 15s infinite linear;
+        }
+        @keyframes wave {
+            0% { background-position: 0 0; }
+            100% { background-position: -2000px 0; }
+        }
 
-  /* ==== الخلفية المتحركة للبحر ==== */
-  .hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-  }
+        /* --- النصوص في الصفحة الرئيسية --- */
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            font-family: 'Impact', sans-serif;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.8rem;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            margin-bottom: 40px;
+        }
 
-  .hero video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(60%);
-  }
+        /* --- زر ابدأ الآن --- */
+        .hero button {
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            background-color: #7f7f7f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .hero button:hover {
+            background-color: #5a5a5a;
+            transform: scale(1.1);
+        }
 
-  /* ==== النصوص ==== */
-  .hero h1 {
-    font-size: 60px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-    font-family: 'Courier New', monospace;
-  }
+        /* --- الصفحة الداخلية --- */
+        .main {
+            display:none;
+            width:100%;
+            min-height:100vh;
+            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            color: white;
+        }
+        .support {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .support span { font-size:1.2rem; }
 
-  .hero h2 {
-    font-size: 28px;
-    font-weight: bold;
-    font-family: 'Tahoma', sans-serif;
-    color: #FFD700;
-    margin-bottom: 30px;
-  }
+        .chat-box {
+            display:none;
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: rgba(0,0,0,0.85);
+            border-radius: 10px;
+            padding: 10px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .chat-box textarea {
+            width: 100%;
+            height: 80%;
+            border-radius:10px;
+            padding:5px;
+            resize:none;
+        }
+        .chat-box button {
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            background-color:#28a745;
+            border:none;
+            color:white;
+            cursor:pointer;
+            border-radius:5px;
+        }
 
-  /* ==== زر ابدأ الان ==== */
-  .hero button {
-    padding: 20px 50px;
-    font-size: 24px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+        /* --- خانات الانستغرام والديسكورد --- */
+        .socials {
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+            margin-top: 100px;
+        }
+        .card {
+            background: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            width: 250px;
+            text-align: center;
+            padding:20px;
+        }
+        .card img {
+            width:100%;
+            border-radius:15px;
+        }
+        .card button {
+            margin-top:15px;
+            padding:10px 20px;
+            font-size:1rem;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            color:white;
+        }
+        .instagram { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
+        .discord { background: #7289da; }
+        .donate { background: #ff6b6b; margin-top:20px; }
 
-  .hero button:hover {
-    background-color: #777;
-  }
+        /* --- تاج بروفايل --- */
+        .profile {
+            position: fixed;
+            top:20px;
+            left:20px;
+            background: rgba(255,255,255,0.9);
+            color:black;
+            padding:15px 25px;
+            border-radius:50%;
+            font-weight:bold;
+            font-size:1.2rem;
+            text-align:center;
+            box-shadow:0 0 15px rgba(0,0,0,0.5);
+        }
 
-  /* ==== الدعم والمساعدة ==== */
-  #supportBox {
-    position: fixed;
-    bottom: -100%;
-    right: 30px;
-    width: 300px;
-    height: 400px;
-    background: #111;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0 0 20px #000;
-    transition: 0.5s;
-    padding: 20px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    z-index: 1000;
-  }
-
-  #supportBox h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-
-  #supportBox textarea {
-    flex: 1;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    resize: none;
-  }
-
-  #supportBox button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #0a84ff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  /* ==== شبكات التواصل ==== */
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-  }
-
-  .social-card {
-    width: 200px;
-    text-align: center;
-    background: #222;
-    padding: 20px;
-    border-radius: 15px;
-    transition: 0.3s;
-  }
-
-  .social-card img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-
-  .social-card button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
-    transition: 0.3s;
-  }
-
-  .instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); }
-  .discord { background: #7289da; }
-</style>
+    </style>
 </head>
 <body>
 
-<!-- ==== الخلفية الرئيسية ==== -->
-<section class="hero">
-  <video autoplay muted loop>
-    <source src="https://cdn.pixabay.com/vimeo/406700571/Drone-Forest-56133.mp4" type="video/mp4">
-  </video>
-  <h1>ZIYAD 28 DZ</h1>
-  <h2>مرحبا بك في موقعنا الالكتروني</h2>
-  <button id="startBtn">ابدأ الآن</button>
-</section>
+    <!-- الصفحة الرئيسية -->
+    <div class="hero">
+        <h1>ZIYAD 28 DZ</h1>
+        <p>مرحبا بك في موقعنا الالكتروني</p>
+        <button id="startBtn">ابدأ الآن</button>
+    </div>
 
-<!-- ==== الدعم والمساعدة ==== -->
-<div id="supportBox">
-  <h3>🎧 الدعم والمساعدة</h3>
-  <textarea placeholder="اكتب رسالتك هنا..."></textarea>
-  <button onclick="alert('تم ارسال الرسالة لصاحب الموقع')">أرسل</button>
-</div>
+    <!-- الصفحة الداخلية -->
+    <div class="main">
+        <div class="profile">ZIYAD KING 👑</div>
 
-<!-- ==== شبكات التواصل ==== -->
-<div class="socials">
-  <div class="social-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    <button class="instagram" onclick="window.open('https://www.instagram.com/dx.x_ziyad288/','_blank')">تابعنا</button>
-  </div>
-  <div class="social-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
-    <button class="discord" onclick="window.open('https://discord.gg/MdAd2bq5','_blank')">تابعنا</button>
-  </div>
-</div>
+        <div class="support" id="supportBtn">
+            <span>🎧 الدعم والمساعدة</span>
+        </div>
 
-<script>
-  // ==== أظهار الدعم عند الضغط على الصفحة ====
-  const supportBox = document.getElementById('supportBox');
-  document.body.addEventListener('click', (e)=>{
-    if(!e.target.closest('#supportBox')) {
-      supportBox.style.bottom = '0';
-    }
-  });
+        <div class="chat-box" id="chatBox">
+            <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+            <button onclick="alert('تم إرسال رسالتك إلى صاحب الموقع!')">إرسال</button>
+        </div>
 
-  // ==== بدء الفيديو الخلفية عند الضغط على ابدأ الآن ====
-  const startBtn = document.getElementById('startBtn');
-  startBtn.addEventListener('click', ()=>{
-    alert("هنا يمكنك عمل انتقال لفيديو الغابات والجبال بالطبع لاحقاً");
-    // يمكن هنا تغيير src الفيديو حسب طلبك
-  });
-</script>
+        <div class="socials">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram">
+                <button class="instagram" onclick="window.open('https://www.instagram.com/dx.x_ziyad288/', '_blank')">تابعنا</button>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
+                <button class="discord" onclick="window.open('https://discord.gg/MdAd2bq5', '_blank')">تابعنا</button>
+            </div>
+        </div>
+
+        <button class="donate" onclick="alert('شكراً لدعمك! سيتم التواصل معك.')">تقديم الدعم المالي</button>
+    </div>
+
+    <script>
+        // زر بدء الآن
+        document.getElementById('startBtn').addEventListener('click', function() {
+            document.querySelector('.hero').style.display = 'none';
+            document.querySelector('.main').style.display = 'block';
+        });
+
+        // زر الدعم والمساعدة
+        const supportBtn = document.getElementById('supportBtn');
+        const chatBox = document.getElementById('chatBox');
+        supportBtn.addEventListener('click', () => {
+            chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
 
 </body>
 </html>
