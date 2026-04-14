@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ZW-28-DZ | مــرحــبــا بــك</title>
+    <!-- أيقونة الموقع الفاخرة (Favicon) -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/6Xk7a4a.png">
+    <!-- أيقونة احتياطية (ذهبية) -->
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2997/2997668.png" type="image/x-icon">
+    <title>ZW-28-DZ | L'ATELIER D'EXCEPTION</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -184,17 +188,68 @@
             font-weight: bold;
         }
         .switch-auth { color: #c9a03d; cursor: pointer; margin-top: 15px; display: inline-block; }
+        
+        /* ====== خلفية سلة التسوق الذهبية الفاخرة ====== */
         .cart-modal {
-            position: fixed; top: 0; right: -450px; width: 420px; height: 100%;
-            background: rgba(15,15,15,0.95); backdrop-filter: blur(16px); z-index: 1050;
-            transition: 0.35s; border-left: 2px solid #c9a03d; display: flex; flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 420px;
+            height: 100%;
+            background: radial-gradient(ellipse at top left, rgba(30, 20, 10, 0.98), rgba(10, 8, 5, 0.99));
+            backdrop-filter: blur(20px);
+            z-index: 1050;
+            transition: 0.35s;
+            border-left: 3px solid #d4af37;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(212, 175, 55, 0.3);
         }
         .cart-modal.open { right: 0; }
-        .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
-        .cart-item { display: flex; justify-content: space-between; margin-bottom: 18px; border-bottom: 1px solid #333; }
-        .remove-item { cursor: pointer; color: #aaa; }
-        .remove-item:hover { color: #c9a03d; }
-        .checkout-btn { background: #c9a03d; color: #0a0a0a; border: none; width: calc(100% - 40px); margin: 0 20px 30px; padding: 14px; border-radius: 40px; font-weight: bold; }
+        .cart-header {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(0,0,0,0.5));
+            border-bottom: 2px solid #d4af37;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 12px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 16px;
+            padding: 12px;
+        }
+        .remove-item { cursor: pointer; color: #d4af37; transition: 0.2s; }
+        .remove-item:hover { color: #ffd700; transform: scale(1.1); }
+        .cart-total {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(0,0,0,0.6));
+            border-top: 2px solid #d4af37;
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: #ffd700;
+        }
+        .checkout-btn {
+            background: linear-gradient(95deg, #d4af37, #b8860b);
+            color: #0a0a0a;
+            border: none;
+            width: calc(100% - 40px);
+            margin: 0 20px 30px;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .checkout-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+        }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1040; visibility: hidden; opacity: 0; transition: 0.25s; }
         .overlay.active { visibility: visible; opacity: 1; }
         .music-player {
@@ -240,7 +295,7 @@
 
 <nav class="navbar sticky-top">
     <div class="container d-flex justify-content-between align-items-center">
-        <div class="logo"><h1>ZW-28-DZ</h1><span>COUTURE HORLOGERIE</span></div>
+        <div class="logo"><h1>ZW-28-DZ</h1><span>L'ATELIER D'EXCEPTION</span></div>
         <div class="d-flex align-items-center gap-4">
             <a href="#" class="text-decoration-none text-white-50 d-none d-md-block" id="collectionLink">المجموعة</a>
             <a href="#" class="text-decoration-none text-white-50 d-none d-md-block" id="limitedLink">إصدارات محدودة</a>
@@ -283,10 +338,10 @@
     </div>
 </div>
 
-<!-- سلة التسوق -->
+<!-- سلة التسوق بخلفية ذهبية -->
 <div class="overlay" id="cartOverlay"></div>
 <div class="cart-modal" id="cartModal">
-    <div class="cart-header d-flex justify-content-between p-3"><h5 id="cartTitle"><i class="fas fa-shopping-bag"></i> سلتي</h5><i class="fas fa-times fs-4" id="closeCartBtn" style="cursor:pointer;"></i></div>
+    <div class="cart-header d-flex justify-content-between p-3"><h5 id="cartTitle"><i class="fas fa-shopping-bag"></i> سلتي الفاخرة</h5><i class="fas fa-times fs-4" id="closeCartBtn" style="cursor:pointer;"></i></div>
     <div class="cart-items" id="cartItemsList">سلة فارغة</div>
     <div class="cart-total d-flex justify-content-between p-3"><span id="totalLabel">المجموع</span><span id="cartTotalAmount">0 درهم</span></div>
     <button class="checkout-btn" id="checkoutBtn">إتمام الشراء</button>
@@ -297,7 +352,7 @@
 <div class="music-player" id="musicToggleBtn"><i class="fas fa-music" id="musicIcon"></i><span id="musicStatus">تشغيل الموسيقى</span></div>
 
 <script>
-    // ---------- بيانات المنتجات الأساسية (بالدينار الجزائري) ----------
+    // ========== بيانات المنتجات ==========
     const productsDataBase = [
         { id: 1, name: { ar: "Onyx Noir GMT", en: "Onyx Noir GMT", fr: "Onyx Noir GMT" }, priceDZD: 98500, img: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "حركة أوتوماتيكية", en: "Automatic movement", fr: "Mouvement automatique" } },
         { id: 2, name: { ar: "Golden Eclipse", en: "Golden Eclipse", fr: "Golden Eclipse" }, priceDZD: 147500, img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "ذهب عيار 18", en: "18K Gold", fr: "Or 18 carats" } },
@@ -307,125 +362,56 @@
         { id: 6, name: { ar: "Midnight Tourbillon", en: "Midnight Tourbillon", fr: "Tourbillon Minuit" }, priceDZD: 349000, img: "https://images.unsplash.com/photo-1585123334904-845d60e6b56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=880&q=80", desc: { ar: "توربيون محدود", en: "Limited tourbillon", fr: "Tourbillon limité" } }
     ];
 
-    // إعدادات البلدان
     const countries = {
         dz: { lang: "ar", currency: "DZD", symbol: "د.ج", rate: 1, name: "🇩🇿 الجزائر", dir: "rtl" },
         us: { lang: "en", currency: "USD", symbol: "$", rate: 0.0037, name: "🇺🇸 USA", dir: "ltr" },
         fr: { lang: "fr", currency: "EUR", symbol: "€", rate: 0.0034, name: "🇫🇷 France", dir: "ltr" }
     };
 
-    let currentCountry = "dz"; // افتراضي الجزائر
+    let currentCountry = "dz";
     let currentLang = "ar";
-    let currentCurrency = "DZD";
     let currentSymbol = "د.ج";
     let currentRate = 1;
 
-    // نصوص الموقع متعددة اللغات
     const translations = {
         ar: {
-            freeShipping: "توصيل مجاني للطلبات فوق 5000 درهم",
-            exclusive: "تشكيلة ZW-28-DZ الحصرية",
-            collection: "المجموعة",
-            limited: "إصدارات محدودة",
-            login: "تسجيل الدخول",
-            heroTitle: "أرقى الإصدارات",
-            heroDesc: "ساعات و إكسسوارات فاخرة – كل قطعة تحمل رمز الندرة والأناقة",
-            discover: "اكتشف التشكيلة",
-            exclusiveBadge: "مقتنيات حصرية",
-            latestTitle: "أحدث القطع الفاخرة",
-            addToCart: "أضف",
-            cart: "سلتي",
-            total: "المجموع",
-            checkout: "إتمام الشراء",
-            emptyCart: "سلة فارغة",
-            added: "تمت الإضافة",
-            removed: "تمت الإزالة",
-            authLogin: "تسجيل الدخول",
-            authRegister: "إنشاء حساب جديد",
-            authNamePlaceholder: "الاسم الكامل",
-            authEmailPlaceholder: "البريد الإلكتروني",
-            authPasswordPlaceholder: "كلمة المرور",
-            authToggleLogin: "ليس لديك حساب؟ إنشاء حساب جديد",
-            authToggleRegister: "لديك حساب؟ سجل دخول",
-            close: "إغلاق",
-            loginBtn: "دخول",
-            registerBtn: "تسجيل",
-            welcomeBack: "أهلاً بعودتك",
-            welcomeNew: "مرحباً",
-            logout: "تسجيل الخروج",
-            guest: "زائر",
-            musicPlay: "تشغيل الموسيقى",
-            musicPlaying: "موسيقى هادئة"
+            freeShipping: "توصيل مجاني للطلبات فوق 5000 درهم", exclusive: "تشكيلة ZW-28-DZ الحصرية",
+            collection: "المجموعة", limited: "إصدارات محدودة", login: "تسجيل الدخول",
+            heroTitle: "أرقى الإصدارات", heroDesc: "ساعات و إكسسوارات فاخرة – كل قطعة تحمل رمز الندرة والأناقة",
+            discover: "اكتشف التشكيلة", exclusiveBadge: "مقتنيات حصرية", latestTitle: "أحدث القطع الفاخرة",
+            addToCart: "أضف", cart: "سلتي الفاخرة", total: "المجموع", checkout: "إتمام الشراء",
+            emptyCart: "سلة فارغة", added: "تمت الإضافة", removed: "تمت الإزالة",
+            authLogin: "تسجيل الدخول", authRegister: "إنشاء حساب جديد",
+            authNamePlaceholder: "الاسم الكامل", authEmailPlaceholder: "البريد الإلكتروني", authPasswordPlaceholder: "كلمة المرور",
+            authToggleLogin: "ليس لديك حساب؟ إنشاء حساب جديد", authToggleRegister: "لديك حساب؟ سجل دخول",
+            close: "إغلاق", loginBtn: "دخول", registerBtn: "تسجيل", welcomeBack: "أهلاً بعودتك", welcomeNew: "مرحباً",
+            logout: "تسجيل الخروج", guest: "زائر", musicPlay: "تشغيل الموسيقى", musicPlaying: "موسيقى هادئة"
         },
         en: {
-            freeShipping: "Free shipping on orders over 5000 DZD",
-            exclusive: "ZW-28-DZ Exclusive Collection",
-            collection: "Collection",
-            limited: "Limited Editions",
-            login: "Login",
-            heroTitle: "Finest Editions",
-            heroDesc: "Luxury watches & accessories – each piece carries a mark of rarity and elegance",
-            discover: "Discover the Collection",
-            exclusiveBadge: "Exclusive Pieces",
-            latestTitle: "Latest Luxury Timepieces",
-            addToCart: "Add",
-            cart: "My Cart",
-            total: "Total",
-            checkout: "Checkout",
-            emptyCart: "Cart is empty",
-            added: "Added",
-            removed: "Removed",
-            authLogin: "Login",
-            authRegister: "Create Account",
-            authNamePlaceholder: "Full Name",
-            authEmailPlaceholder: "Email",
-            authPasswordPlaceholder: "Password",
-            authToggleLogin: "Don't have an account? Create one",
-            authToggleRegister: "Already have an account? Login",
-            close: "Close",
-            loginBtn: "Login",
-            registerBtn: "Register",
-            welcomeBack: "Welcome back",
-            welcomeNew: "Welcome",
-            logout: "Logout",
-            guest: "Guest",
-            musicPlay: "Play Music",
-            musicPlaying: "Calm Music"
+            freeShipping: "Free shipping on orders over 5000 DZD", exclusive: "ZW-28-DZ Exclusive Collection",
+            collection: "Collection", limited: "Limited Editions", login: "Login",
+            heroTitle: "Finest Editions", heroDesc: "Luxury watches & accessories – each piece carries a mark of rarity and elegance",
+            discover: "Discover the Collection", exclusiveBadge: "Exclusive Pieces", latestTitle: "Latest Luxury Timepieces",
+            addToCart: "Add", cart: "My Luxury Cart", total: "Total", checkout: "Checkout",
+            emptyCart: "Cart is empty", added: "Added", removed: "Removed",
+            authLogin: "Login", authRegister: "Create Account",
+            authNamePlaceholder: "Full Name", authEmailPlaceholder: "Email", authPasswordPlaceholder: "Password",
+            authToggleLogin: "Don't have an account? Create one", authToggleRegister: "Already have an account? Login",
+            close: "Close", loginBtn: "Login", registerBtn: "Register", welcomeBack: "Welcome back", welcomeNew: "Welcome",
+            logout: "Logout", guest: "Guest", musicPlay: "Play Music", musicPlaying: "Calm Music"
         },
         fr: {
-            freeShipping: "Livraison gratuite pour les commandes de plus de 5000 DZD",
-            exclusive: "Collection exclusive ZW-28-DZ",
-            collection: "Collection",
-            limited: "Éditions limitées",
-            login: "Connexion",
-            heroTitle: "Plus belles éditions",
-            heroDesc: "Montres et accessoires de luxe – chaque pièce porte un sceau de rareté et d'élégance",
-            discover: "Découvrir la collection",
-            exclusiveBadge: "Pièces exclusives",
-            latestTitle: "Dernières pièces de luxe",
-            addToCart: "Ajouter",
-            cart: "Mon panier",
-            total: "Total",
-            checkout: "Commander",
-            emptyCart: "Panier vide",
-            added: "Ajouté",
-            removed: "Retiré",
-            authLogin: "Connexion",
-            authRegister: "Créer un compte",
-            authNamePlaceholder: "Nom complet",
-            authEmailPlaceholder: "E-mail",
-            authPasswordPlaceholder: "Mot de passe",
-            authToggleLogin: "Pas de compte ? Créez-en un",
-            authToggleRegister: "Déjà un compte ? Connectez-vous",
-            close: "Fermer",
-            loginBtn: "Se connecter",
-            registerBtn: "S'inscrire",
-            welcomeBack: "Bon retour",
-            welcomeNew: "Bienvenue",
-            logout: "Déconnexion",
-            guest: "Invité",
-            musicPlay: "Lire la musique",
-            musicPlaying: "Musique douce"
+            freeShipping: "Livraison gratuite pour les commandes de plus de 5000 DZD", exclusive: "Collection exclusive ZW-28-DZ",
+            collection: "Collection", limited: "Éditions limitées", login: "Connexion",
+            heroTitle: "Plus belles éditions", heroDesc: "Montres et accessoires de luxe – chaque pièce porte un sceau de rareté et d'élégance",
+            discover: "Découvrir la collection", exclusiveBadge: "Pièces exclusives", latestTitle: "Dernières pièces de luxe",
+            addToCart: "Ajouter", cart: "Mon panier de luxe", total: "Total", checkout: "Commander",
+            emptyCart: "Panier vide", added: "Ajouté", removed: "Retiré",
+            authLogin: "Connexion", authRegister: "Créer un compte",
+            authNamePlaceholder: "Nom complet", authEmailPlaceholder: "E-mail", authPasswordPlaceholder: "Mot de passe",
+            authToggleLogin: "Pas de compte ? Créez-en un", authToggleRegister: "Déjà un compte ? Connectez-vous",
+            close: "Fermer", loginBtn: "Se connecter", registerBtn: "S'inscrire", welcomeBack: "Bon retour", welcomeNew: "Bienvenue",
+            logout: "Déconnexion", guest: "Invité", musicPlay: "Lire la musique", musicPlaying: "Musique douce"
         }
     };
 
@@ -453,18 +439,12 @@
         document.getElementById("closeAuthModal").innerText = t.close;
         document.getElementById("selectedCountry").innerHTML = countries[currentCountry].name;
         document.getElementById("musicStatus").innerText = isPlaying ? t.musicPlaying : t.musicPlay;
-        // إعادة عرض المنتجات
         renderProducts();
         updateCartUI();
     }
 
-    function convertPrice(priceDZD) {
-        return Math.round(priceDZD * currentRate);
-    }
-
-    function formatPrice(price) {
-        return price.toLocaleString() + " " + currentSymbol;
-    }
+    function convertPrice(priceDZD) { return Math.round(priceDZD * currentRate); }
+    function formatPrice(price) { return price.toLocaleString() + " " + currentSymbol; }
 
     function renderProducts() {
         const container = document.getElementById("productsContainer");
@@ -486,28 +466,18 @@
         });
     }
 
-    // تغيير البلد
     function setCountry(countryCode) {
         currentCountry = countryCode;
         currentLang = countries[countryCode].lang;
-        currentCurrency = countries[countryCode].currency;
         currentSymbol = countries[countryCode].symbol;
         currentRate = countries[countryCode].rate;
-        // تغيير اتجاه الصفحة
-        const newDir = countries[countryCode].dir;
-        document.body.dir = newDir;
+        document.body.dir = countries[countryCode].dir;
         document.documentElement.lang = currentLang;
-        if (newDir === "ltr") {
-            document.body.style.textAlign = "left";
-        } else {
-            document.body.style.textAlign = "right";
-        }
         applyLanguageAndCurrency();
-        // إعادة تحميل السلة لتعكس العملة الجديدة (يتم تحديث الأسعار المخزنة)
         loadCartForUser();
     }
 
-    // نظام المستخدمين والسلة (نفس الكود السابق مع دعم العملة)
+    // نظام المستخدمين والسلة
     let currentUser = null;
     let cart = [];
     let isLoginMode = true;
@@ -526,8 +496,7 @@
 
     function getCartKey() { return currentUser ? `cart_${currentUser.id}` : "guest_cart"; }
     function loadCartForUser() {
-        const key = getCartKey();
-        const stored = localStorage.getItem(key);
+        const stored = localStorage.getItem(getCartKey());
         cart = stored ? JSON.parse(stored) : [];
         updateCartUI(); updateCartCount();
     }
@@ -540,7 +509,7 @@
         const totalSpan = document.getElementById("cartTotalAmount");
         if (cart.length === 0) { container.innerHTML = `<div class="text-center py-5">${translations[currentLang].emptyCart}</div>`; totalSpan.innerText = "0 " + currentSymbol; return; }
         let html = '', total = 0;
-        cart.forEach(item => { total += item.price * item.quantity; html += `<div class="cart-item p-2"><div><h6>${item.name}</h6><small>${translations[currentLang].addToCart} : ${item.quantity}</small><div class="gold-text">${formatPrice(item.price * item.quantity)}</div></div><div class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></div></div>`; });
+        cart.forEach(item => { total += item.price * item.quantity; html += `<div class="cart-item"><div><h6>${item.name}</h6><small>الكمية: ${item.quantity}</small><div class="gold-text">${formatPrice(item.price * item.quantity)}</div></div><div class="remove-item" data-id="${item.id}"><i class="fas fa-trash-alt"></i></div></div>`; });
         container.innerHTML = html; totalSpan.innerText = formatPrice(total);
         document.querySelectorAll(".remove-item").forEach(el => el.addEventListener("click", (e) => { const id = parseInt(el.dataset.id); cart = cart.filter(i => i.id !== id); saveCartForUser(); updateCartUI(); updateCartCount(); showToast(translations[currentLang].removed); }));
     }
@@ -572,7 +541,6 @@
 
     // مودال المصادقة
     const authModal = document.getElementById("authModal");
-    const authTitle = document.getElementById("authTitle");
     const authNameField = document.getElementById("authName");
     const authEmail = document.getElementById("authEmail");
     const authPassword = document.getElementById("authPassword");
@@ -586,8 +554,8 @@
     toggleAuthText.onclick = () => {
         isLoginMode = !isLoginMode;
         const t = translations[currentLang];
-        if (isLoginMode) { authTitle.innerText = t.authLogin; authNameField.style.display = "none"; authActionBtn.innerText = t.loginBtn; toggleAuthText.innerText = t.authToggleLogin; }
-        else { authTitle.innerText = t.authRegister; authNameField.style.display = "block"; authActionBtn.innerText = t.registerBtn; toggleAuthText.innerText = t.authToggleRegister; }
+        if (isLoginMode) { document.getElementById("authTitle").innerText = t.authLogin; authNameField.style.display = "none"; authActionBtn.innerText = t.loginBtn; toggleAuthText.innerText = t.authToggleLogin; }
+        else { document.getElementById("authTitle").innerText = t.authRegister; authNameField.style.display = "block"; authActionBtn.innerText = t.registerBtn; toggleAuthText.innerText = t.authToggleRegister; }
     };
     authActionBtn.onclick = () => {
         const email = authEmail.value.trim();
@@ -617,17 +585,14 @@
     musicBtn.onclick = () => isPlaying ? pauseMusic() : playMusic();
     document.addEventListener("click", function firstClick() { if (!isPlaying) playMusic(); document.removeEventListener("click", firstClick); });
 
-    // مستمع تغيير البلد من القائمة المنسدلة
+    // مستمع تغيير البلد
     document.querySelectorAll(".dropdown-item-custom").forEach(item => {
-        item.addEventListener("click", () => {
-            const country = item.getAttribute("data-country");
-            setCountry(country);
-        });
+        item.addEventListener("click", () => { setCountry(item.getAttribute("data-country")); });
     });
 
     // بدء التشغيل
     loadCurrentUser();
-    setCountry("dz"); // الافتراضي الجزائر
+    setCountry("dz");
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
